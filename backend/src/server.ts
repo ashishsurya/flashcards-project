@@ -5,6 +5,7 @@ import { appRouter } from './routers/root';
 
 // for importing enviroment variables
 import dotenv from 'dotenv';
+import { createContext } from './trpc';
 dotenv.config();
 
 console.log(process.env.DATABASE_URL);
@@ -25,10 +26,15 @@ async function main() {
     next();
   });
 
+  app.get('/', (req, res) => {
+    return res.json({ message: 'Go to /panel for exploring api' });
+  });
+
   app.use(
     '/trpc',
     trpcExpress.createExpressMiddleware({
       router: appRouter,
+      createContext: createContext,
     })
   );
 
