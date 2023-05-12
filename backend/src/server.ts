@@ -2,7 +2,7 @@ import express from 'express';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import { renderTrpcPanel } from 'trpc-panel';
 import { appRouter } from './routers/root';
-
+import cors from "cors";
 // for importing enviroment variables
 import dotenv from 'dotenv';
 import { createContext } from './trpc';
@@ -13,7 +13,7 @@ console.log(process.env.DATABASE_URL);
 async function main() {
   // express implementation
   const app = express();
-
+  app.use(cors())
   app.use((req, _res, next) => {
     // request logger
     console.log(
