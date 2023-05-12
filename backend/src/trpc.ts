@@ -9,9 +9,8 @@ export const createContext = ({
   prisma: prisma,
   req,
 }); // no context
-type Context = inferAsyncReturnType<typeof createContext>;
 
-export const t = initTRPC.context<Context>().create();
+export const t = initTRPC.context<typeof createContext>().create();
 export const publicProcedure = t.procedure;
 export const router = t.router;
 export const middleware = t.middleware;
