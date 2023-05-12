@@ -6,6 +6,6 @@
 
 @layer base {
   body {
-    @apply bg-gray-800 text-white font-instrument
+    @apply bg-black text-white font-instrument;
   }
 }
