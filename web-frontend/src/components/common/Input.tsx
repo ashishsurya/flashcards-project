@@ -9,7 +9,7 @@ interface TextInputProps {
 }
 
 export const Input = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ type, placeholder, label, fullWidth }, ref) => {
+  ({ type, placeholder, label, fullWidth, required }, ref) => {
     const id = useId();
 
     return (
@@ -27,7 +27,7 @@ export const Input = forwardRef<HTMLInputElement, TextInputProps>(
           id={label + id}
           placeholder={placeholder}
           ref={ref}
-          required
+          required={required}
         />
       </div>
     );
