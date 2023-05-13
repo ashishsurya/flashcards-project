@@ -1,12 +1,15 @@
 import { Input } from '../common/Input';
 import logo from '../../../public/logo.svg';
+import { trpc } from '../../utils/trpc';
 export const LoginScreen = () => {
+  const { mutate, isLoading, error } = trpc.auth.login.useMutation();
+
   return (
     <div className='grid place-items-center h-full md:h-[80vh]'>
       <div className='p-8  border-slate-600 rounded-md flex flex-col space-y-7'>
         <img src={logo} alt='' className='w-[300px] mx-auto mb-4' />
         <h1 className='text-3xl md:text-5xl font-mono text-[#929292]'>
-          A minimalist flashcards app 
+          A minimalist flashcards app
         </h1>
         <form className='flex flex-col space-y-5 items-stretch w-3/5 mx-auto'>
           <Input
