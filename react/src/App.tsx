@@ -3,23 +3,29 @@ import {
   SignOutButton,
   SignedIn,
   SignedOut,
-  useUser,
 } from '@clerk/clerk-react';
+import { AppWrapper } from './components/AppWrapper';
 
 export const App = () => {
-  const { user } = useUser();
   return (
-    <div>
-      <SignedIn>
-        <h1>hello from clerk</h1>
-        {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-        <p>Welcome , {user?.fullName}</p>
-        <SignOutButton />
-      </SignedIn>
+    <>
       <SignedOut>
-        <h3>❌ OOPS, not singed in</h3>
-        <SignInButton />
+        <LoginDisclaimer />
       </SignedOut>
+      <SignedIn>
+        <AppWrapper />
+      </SignedIn>
+    </>
+  );
+};
+
+const LoginDisclaimer = () => {
+  return (
+    <div className='flex items-center justify-center flex-col h-[60vh] gap-8'>
+      <h3 className='text-3xl font-bold'>Oops!!!, you are logged out</h3>
+      <SignInButton>
+        <button className='bg-white px-4 py-2 text-black'>Login</button>
+      </SignInButton>
     </div>
   );
 };
